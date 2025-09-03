@@ -179,16 +179,16 @@ resource "aws_vpc_endpoint" "ecr_dkr" {
   security_group_ids = [aws_security_group.sg_vpc_endpoint.id]
 }
 
-# resource "aws_vpc_endpoint" "ecr_api" {
-#   vpc_id = aws_vpc.vpc.id
-#   service_name = "com.amazonaws.${var.region}.ecr.api"
-#   vpc_endpoint_type = "Interface"
-#   private_dns_enabled = true
-#   subnet_ids = [
-#     aws_subnet.private_subnet[0].id
-#   ]
-#   security_group_ids = [aws_security_group.sg_vpc_endpoint.id]
-# }
+resource "aws_vpc_endpoint" "ecr_api" {
+  vpc_id = aws_vpc.vpc.id
+  service_name = "com.amazonaws.${var.region}.ecr.api"
+  vpc_endpoint_type = "Interface"
+  private_dns_enabled = true
+  subnet_ids = [
+    aws_subnet.private_subnet[0].id
+  ]
+  security_group_ids = [aws_security_group.sg_vpc_endpoint.id]
+}
 
 ### IAM  #######################################################
 resource "aws_iam_role" "ec2_role" {
